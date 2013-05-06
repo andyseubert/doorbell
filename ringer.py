@@ -12,7 +12,7 @@ if __name__ == "__main__":
         sys.exit()
 
     host = sys.argv[1]
-    port = 8888
+    port = 9999
 
 #create an INET, STREAMing socket
 try:
@@ -21,7 +21,7 @@ except socket.error:
     print 'Failed to create socket'
     sys.exit()
 
-print 'Socket Created'
+print 'local Socket Created'
 
 try:
     remote_ip = socket.gethostbyname( host )
@@ -31,6 +31,10 @@ except socket.gaierror:
     print 'Hostname could not be resolved. Exiting'
     sys.exit()
 
+except socket.error:
+    print "could not contact " + host
+    sys.exit()
+    
 print 'Socket Connected to ' + host + ' on ip ' + remote_ip
 
 #Send some data to remote server
@@ -41,11 +45,13 @@ message = "Q60NQzca32NU8zUuEOSPHmnnXKsSJNereT71yBNcgSAxj4TYqeAxOQAXnWn1jXs"
 try :
     s.send(message)
     print 'Key sent successfully'
-    data = s.recv(1024)
-    print data+"\n"
+    
 except socket.error:
     #Send failed
-    print 'Send failed'
+    print 'receive failed'
     sys.exit()
+    
+data = s.recv(1024)
+print data+"\n"
 
 s.close()

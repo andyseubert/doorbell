@@ -1,2 +1,2 @@
-bluegiant.unival.com
-happy.unival.com
+redserver.unival.com
+imoinu.unival.com
