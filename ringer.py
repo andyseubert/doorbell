@@ -17,6 +17,7 @@ if __name__ == "__main__":
 #create an INET, STREAMing socket
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(3)
 except socket.error:
     print 'Failed to create socket'
     sys.exit()
@@ -36,7 +37,7 @@ except socket.error:
     sys.exit()
     
 print 'Socket Connected to ' + host + ' on ip ' + remote_ip
-
+s.settimeout(None)
 #Send some data to remote server
 # make it like a "PSK" kind of thing
 message = "Q60NQzca32NU8zUuEOSPHmnnXKsSJNereT71yBNcgSAxj4TYqeAxOQAXnWn1jXs"

@@ -1,2 +1,4 @@
-redserver.unival.com
+10.1.5.5
 imoinu.unival.com
+jenntown.unival.com
+prineville.unival.com

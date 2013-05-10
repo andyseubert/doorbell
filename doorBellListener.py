@@ -24,10 +24,11 @@ def alert_action(channel):
 	for host in listeners:
 	    print "ringing " + host
 	    subprocess.Popen([sys.executable, alertcmd, host])
-	subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
+	# subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
+	subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","You Rang?"])
 print ("READY")
 
-GPIO.add_event_detect(bellButtonPin, GPIO.RISING, callback=alert_action, bouncetime=200) 
+GPIO.add_event_detect(bellButtonPin, GPIO.RISING, callback=alert_action, bouncetime=300) 
 
 while True:
 	sleep(1)
