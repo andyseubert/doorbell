@@ -22,7 +22,7 @@ except socket.error:
     print 'Failed to create socket'
     sys.exit()
 
-print 'local Socket Created'
+#print 'local Socket Created'
 
 try:
     remote_ip = socket.gethostbyname( host )
@@ -36,7 +36,7 @@ except socket.error:
     print "could not contact " + host
     sys.exit()
     
-print 'Socket Connected to ' + host + ' on ip ' + remote_ip
+#print 'Socket Connected to ' + host + ' on ip ' + remote_ip
 s.settimeout(None)
 #Send some data to remote server
 # make it like a "PSK" kind of thing
