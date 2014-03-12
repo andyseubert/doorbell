@@ -1,4 +1,4 @@
-Param([string]$port="8888",[string]$doorbellpath="e:\scripts\doorbell\dist\DoorBellService.exe",[switch]$verbose)
+Param([string]$port="8888",[string]$doorbellpath="e:\scripts\doorbell\doorbell\dist\DoorBellService.exe",[switch]$verbose)
 ## check if doorbellservice.exe is running by making sure this PC is listening on the right port
 
 $verbose=$false
