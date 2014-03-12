@@ -9,6 +9,15 @@ prepare raspberry
     sudo apt-get install -y python
     sudo apt-get install -y git
     sudo apt-get install -y python-rpi.gpio
+    
+* plug the doorbell button between GPIO pin 2 and GND
+* add computer hostnames to listeners.txt - these will receive the ring signal
+* add to rc.local 
+
+
+    python /opt/path/to/doorbell/bootalert.py
+    python /opt/path/to/doorbell/doorBellListener.py
+      
 
 install on windows
 ----
@@ -22,6 +31,6 @@ install on windows
 * put the client.py file on your raspberry pi
  * _git clone https://github.com/andyseubert/doorbell_
 * to ring the doorbell sound on the windows client run
-<code>client.py hostname</code>
+<code>ringer.py hostname</code>
 
 
