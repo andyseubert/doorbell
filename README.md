@@ -8,6 +8,7 @@ prepare raspberry
 
     sudo apt-get install -y python
     sudo apt-get install -y git
+    sudo apt-get install -y python-rpi.gpio
 
 install on windows
 ----
