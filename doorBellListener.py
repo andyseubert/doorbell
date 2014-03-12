@@ -15,7 +15,7 @@ with open('./listeners.txt') as f:
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(2, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
+GPIO.setup(7, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
 
 def alert_action(channel):
 	from time import sleep	
@@ -24,7 +24,7 @@ def alert_action(channel):
 		subprocess.Popen([sys.executable, alertcmd, host])
 print ("READY")
 
-GPIO.add_event_detect(2, GPIO.FALLING, callback=alert_action, bouncetime=200) 
+GPIO.add_event_detect(7, GPIO.FALLING, callback=alert_action, bouncetime=200) 
 
 while True:
 	sleep(1)
