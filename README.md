@@ -9,6 +9,8 @@ raspberry pi is your doorbell
  * the default location is
 * e:\scripts\doorbell\doorbell\dist\DoorBellService.exe
 * put the client.py file on your raspberry pi
+ * _git clone https://github.com/andyseubert/doorbell_
 * to ring the doorbell sound on the windows client run
 <code>client.py hostname</code>
+
 
