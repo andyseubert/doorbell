@@ -15,7 +15,7 @@ with open('./listeners.txt') as f:
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(2, GPIO.IN)  # Front push button 
+GPIO.setup(2, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
 
 def alert_action(channel):
 	from time import sleep	
