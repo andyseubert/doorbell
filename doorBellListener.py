@@ -8,10 +8,7 @@ import RPi.GPIO as GPIO
 
 # global variables for commands and status
 global alertcmd
-global alarmOn
-# the alertcmd should be slightly different depending on which event triggers it (button or remote)
-# because later we can add conditions for doors or other x10 devices
-alertcmd = "/root/testalert.py" 
+alertcmd = "/opt/ringer.py" 
 # inital alarm status is off
 alarmOn  = False
 status = 0
