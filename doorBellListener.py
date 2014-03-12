@@ -8,9 +8,9 @@ import RPi.GPIO as GPIO
 
 # global variables for commands and status
 global alertcmd
-alertcmd = "/opt/ringer.py" 
+alertcmd = "./ringer.py" 
 ## read the list of hosts listening from a configuration file
-with open('/opt/listeners.txt') as f:
+with open('./listeners.txt') as f:
     listeners = f.read().splitlines()
 
 GPIO.setmode(GPIO.BCM)
