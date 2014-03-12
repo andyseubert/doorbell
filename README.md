@@ -17,7 +17,6 @@ prepare raspberry
 
     python /opt/path/to/doorbell/bootalert.py
     python /opt/path/to/doorbell/doorBellListener.py
-      
 
 install on windows
 ----
