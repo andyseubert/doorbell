@@ -1,4 +1,4 @@
-Param([string]$port="8888",[string]$doorbellpath="e:\scripts\doorbell\doorbell\dist\DoorBellService.exe",[switch]$verbose)
+Param([string]$port="9999",[string]$doorbellpath="e:\scripts\doorbell\doorbell\dist\DoorBellService.exe",[switch]$verbose)
 ## check if doorbellservice.exe is running by making sure this PC is listening on the right port
 
 $verbose=$false
@@ -6,7 +6,7 @@ $verbose=$false
 $ErrorActionPreference = "SilentlyContinue"
  
 if($verbose){Write-Host "checking netstat"}
-$netstat = $(netstat -an | select-string 8888)
+$netstat = $(netstat -an | select-string $port)
 
 if (!($netstat)) {
     if($verbose){write-host "starting $doorbellpath"}

@@ -6,7 +6,7 @@ import subprocess
 
 def DoorBellService():
     HOST = ''   # Symbolic name meaning all available interfaces
-    PORT = 8888
+    PORT = 9999
     
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #print 'Socket created'
