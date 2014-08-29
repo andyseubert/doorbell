@@ -5,7 +5,7 @@ import sys
 import subprocess
 from subprocess import Popen
 import RPi.GPIO as GPIO
-DETACHED_PROCESS = 0x00000008
+
 
 # global variables for commands and status
 global alertcmd
@@ -23,16 +23,12 @@ def alert_action(channel):
 	    listeners = f.read().splitlines()
 	print('Edge detected on channel %s'%channel)
 	for host in listeners:
-	    print "ringing " + host
-	    ringthebell = [
-		sys.executable,
-		alertcmd,
-		host
-		]
-	    p = Popen(ringthebell,shell=False,stdin=None,stdout=None,stderr=None,close_fds=True,creationflags=DETACHED_PROCESS)
+		print "ringing " + host
+		subprocess.Popen([sys.executable, alertcmd, host])
+		
 	# subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
 	subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","You Rang?"])
-	sleep (1)
+	#sleep (1)
 print ("READY")
 
 GPIO.add_event_detect(bellButtonPin, GPIO.RISING, callback=alert_action, bouncetime=300) 

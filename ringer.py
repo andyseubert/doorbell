@@ -4,6 +4,7 @@ import sys
 import struct
 import time
 
+debug=0
 #main function
 if __name__ == "__main__":
 
@@ -33,7 +34,7 @@ except socket.gaierror:
     sys.exit()
 
 except socket.error:
-    print "could not contact " + host
+    if debug: print "could not contact " + host
     sys.exit()
     
 #print 'Socket Connected to ' + host + ' on ip ' + remote_ip
@@ -45,14 +46,14 @@ message = "Q60NQzca32NU8zUuEOSPHmnnXKsSJNereT71yBNcgSAxj4TYqeAxOQAXnWn1jXs"
 
 try :
     s.send(message)
-    print 'Key sent successfully'
+    if debug: print 'Key sent successfully'
     
 except socket.error:
     #Send failed
-    print 'receive failed'
+    if debug: print 'receive failed'
     sys.exit()
     
 data = s.recv(1024)
-print data+"\n"
+if debug: print data+"\n"
 
 s.close()
