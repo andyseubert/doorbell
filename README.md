@@ -10,13 +10,17 @@ prepare raspberry
     sudo apt-get install -y git
     sudo apt-get install -y python-rpi.gpio
     
-* plug the doorbell button between GPIO pin 2 and GND
+* the doorbell button goes to a solid state relay which is connected on its NO terminals to the buttonPin and GND
 * add computer hostnames to listeners.txt - these will receive the ring signal
 * add to rc.local 
 
 
-    python /opt/path/to/doorbell/bootalert.py
-    python /opt/path/to/doorbell/doorBellListener.py
+    /opt/doorbell/bootalert.py
+    /opt/doorbell/doorBellListener.py
+    /opt/doorbell/unlockDoor.py
+* add to crontab
+
+     * * * * * /opt/doorbell/doorbellWatchdog.py
 
 install on windows
 ----
