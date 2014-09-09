@@ -46,7 +46,15 @@ def DoorBellService():
         #wait to accept a connection
         conn, addr = s.accept()
         #print 'Connected with ' + addr[0] + ':' + str(addr[1])
-        winsound.PlaySound('C:\Users\Public\Music\doorbell1.wav',winsound.SND_FILENAME)
+        
+        win32evtlogutil.ReportEvent(logType, 0,strings=['Connected with ' + addr[0] + ':' + str(addr[1])],
+                            eventType=win32evtlog.EVENTLOG_INFORMATION_TYPE,
+                            data = "Raw\0Data".encode("ascii"))
+        try:
+            winsound.PlaySound('C:\Users\Public\Music\doorbell1.wav',winsound.SND_FILENAME)
+        except msg:
+            win32evtlogutil.ReportEvent(logType, 2,strings=['Ring failed Error Code : ' + str(msg[0]) + ' Message ' + msg[1],"ERROR DOORBELL"],
+                                    data = "Raw\0Data".encode("ascii"))
         
         #start new thread
         start_new_thread(clientthread ,(conn,))
