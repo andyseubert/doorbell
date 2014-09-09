@@ -36,7 +36,7 @@ def DoorBellService():
         conn, addr = s.accept()
         print 'Connected with ' + addr[0] + ':' + str(addr[1])
         try:
-            subprocess.Popen(["aplay","-d 3000","/opt/doorbell/doorbell1.wav"])
+            subprocess.Popen(["aplay","-d 3000","/opt/doorbell/doorbell1.wav"],close_fds = True)
         except msg:
             print('Ring failed Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
         
