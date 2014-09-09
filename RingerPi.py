@@ -1,8 +1,9 @@
 import socket
 import sys
+import subprocess
 from thread import *
-import pyglet
-        
+
+
 def DoorBellService():
     HOST = ''   # Symbolic name meaning all available interfaces
     PORT = 9999
@@ -33,10 +34,9 @@ def DoorBellService():
         conn, addr = s.accept()
         print 'Connected with ' + addr[0] + ':' + str(addr[1])
         try:
-            winsound.PlaySound('C:\Users\Public\Music\doorbell1.wav',winsound.SND_FILENAME)
+            subprocess.Popen(["aplay","-d 3000","/opt/doorbell/doorbell1.wav"])
         except msg:
-            win32evtlogutil.ReportEvent(logType, 2,strings=['Ring failed Error Code : ' + str(msg[0]) + ' Message ' + msg[1],"ERROR DOORBELL"],
-                                    data = "Raw\0Data".encode("ascii"))
+            print('Ring failed Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
         
         #start new thread
         start_new_thread(clientthread ,(conn,))
