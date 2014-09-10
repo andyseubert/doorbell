@@ -1,7 +1,7 @@
 #!/bin/bash
-PID=$(pgrep door)
-
-if [[ -z "$PID" ]]; then
-  /opt/doorbell/doorBellListener.py & 
+if pgrep door >/dev/null 2>&1
+then
+  /opt/doorbell/doorBellListener.py &
+ echo "starting listener"
 fi
-unset PID
+
