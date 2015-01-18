@@ -13,18 +13,26 @@ alertcmd = "./ringer.py"
 with open('./listeners.txt') as f:
     listeners = f.read().splitlines()
 
+bellButtonPin=7
+doorUnlockPin=4
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(7, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
-
+GPIO.setup(bellButtonPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
+GPIO.setup(doorUnlockPin,GPIO.OUT)
+GPIO.output(doorUnlockPin,GPIO.LOW)
 def alert_action(channel):
 	from time import sleep	
 	print('Edge detected on channel %s'%channel)
 	for host in listeners:
-		subprocess.Popen([sys.executable, alertcmd, host])
+	    print "ringing " + host
+#	    subprocess.Popen([sys.executable, alertcmd, host])
+	GPIO.output(doorUnlockPin,GPIO.HIGH)
+	sleep (2)
+	GPIO.output(doorUnlockPin,GPIO.LOW)
 print ("READY")
 
-GPIO.add_event_detect(7, GPIO.FALLING, callback=alert_action, bouncetime=200) 
+GPIO.add_event_detect(bellButtonPin, GPIO.FALLING, callback=alert_action, bouncetime=200) 
 
 while True:
 	sleep(1)
