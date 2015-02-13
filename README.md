@@ -37,3 +37,8 @@ install on windows
 <code>ringer.py hostname</code>
 
 
+install on raspberry to be the ringer
+----
+ * install as per "prepare raspberry" 
+ * git clone into /opt/doorbell
+ * add to rc.local /opt/doorbell/RingerPi.py &
