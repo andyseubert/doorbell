@@ -6,17 +6,18 @@ raspberry pi is your doorbell
 prepare raspberry
 ----
 <code>
-    sudo apt-get install -y python
-    sudo apt-get install -y git
-    sudo apt-get install -y python-rpi.gpio
+    sudo apt-get install -y python git python-rpi.gpio
 </code>    
 * the doorbell button goes to a solid state relay which is connected on its NO terminals to the buttonPin and GND
 * add computer hostnames to listeners.txt - these will receive the ring signal
 * add to rc.local 
 <code>
     /opt/doorbell/bootalert.py
+
     /opt/doorbell/doorBellListener.py
+    
     /opt/doorbell/unlockDoor.py
+    
 </code>
 * add to crontab
 
