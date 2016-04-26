@@ -13,14 +13,12 @@ prepare raspberry
 * the doorbell button goes to a solid state relay which is connected on its NO terminals to the buttonPin and GND
 * add computer hostnames to listeners.txt - these will receive the ring signal
 * add to rc.local 
-
-
     /opt/doorbell/bootalert.py
     /opt/doorbell/doorBellListener.py
     /opt/doorbell/unlockDoor.py
 * add to crontab
 
-     * * * * * /opt/doorbell/doorbellWatchdog.py
+     * * * * * /opt/doorbell/doorbellWatchdog.sh
 
 install on windows
 ----
