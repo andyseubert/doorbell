@@ -4,7 +4,7 @@ import sys
 import struct
 import time
 
-debug=0
+debug=1
 #main function
 if __name__ == "__main__":
 
@@ -26,6 +26,7 @@ except socket.error:
 #print 'local Socket Created'
 
 try:
+    print 'ringing : ' + host
     remote_ip = socket.gethostbyname( host )
     s.connect((host, port))
 
