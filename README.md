@@ -37,3 +37,9 @@ install on windows
 <code>ringer.py hostname</code>
 
 
+install on raspberry to be the ringer
+----
+ * install as per "prepare raspberry" 
+ * git clone into /opt/doorbell
+ * add to rc.local /opt/doorbell/RingerPi.py &
+ * make sure the audio is working. I found this page helpful http://computers.tutsplus.com/articles/using-a-usb-audio-device-with-a-raspberry-pi--mac-55876
