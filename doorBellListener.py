@@ -31,10 +31,12 @@ def debouncedInput(pin):
            zeroes = zeroes + 1
            ones = 0
         i = i + 1
+	### return 1 for zeroes if a button grounds when pushed
+	### return 1 for ones if a button goes positive when pushed
         if (ones >= 3):
-            return 1
-        if (zeroes >=3):
             return 0
+        if (zeroes >=3):
+            return 1
         time.sleep(0.5) # wait a bit
 
     # indeterminate state, tries exhausted
@@ -42,18 +44,19 @@ def debouncedInput(pin):
     return (bit)   #best effort 
 
 def alert_action(channel):
-	from time import sleep	
-	## read the list of hosts listening from a configuration file
-	with open('/opt/doorbell/listeners.txt') as f:
-		listeners = f.read().splitlines()
-	print('Edge detected on channel %s'%channel)
-	for host in listeners:
-		print "ringing " + host
-		subprocess.Popen([sys.executable, alertcmd, host])
+	if (debouncedInput(bellButtonPin)):
+		from time import sleep	
+		## read the list of hosts listening from a configuration file
+		with open('/opt/doorbell/listeners.txt') as f:
+			listeners = f.read().splitlines()
+		print('Edge detected on channel %s'%channel)
+		for host in listeners:
+			print "ringing " + host
+			subprocess.Popen([sys.executable, alertcmd, host])
 
-	# subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
-	#	subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
-	#sleep (1)
+		# subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
+		#	subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
+		#sleep (1)
 print ("READY")
 
 GPIO.add_event_detect(bellButtonPin, GPIO.FALLING, callback=alert_action, bouncetime=500) 
