@@ -56,7 +56,7 @@ def alert_action(channel):
 			subprocess.Popen([sys.executable, alertcmd, host])
 
 		# subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
-		#	subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
+		subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
 		#sleep (1)
 print ("READY")
 
