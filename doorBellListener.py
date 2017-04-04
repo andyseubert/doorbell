@@ -16,6 +16,7 @@ bellButtonPin=26
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 #GPIO.setup(bellButtonPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
+## is it possible that pulling up internally AND externally causes spurious button presses??
 GPIO.setup(bellButtonPin, GPIO.IN)  # Front push button 
 # adding debounce code found here:
 # http://raspberrypi.stackexchange.com/a/50530
