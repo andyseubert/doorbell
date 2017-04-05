@@ -57,22 +57,23 @@ print ("READY")
 # and adding that definitely stopped the bouncing.
 
 while (True):
-  GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
-  if (debouncedInput(bellButtonPin)):
-#    from time import sleep	
-    ## read the list of hosts listening from a configuration file
-    with open('/opt/doorbell/listeners.txt') as f:
-  	listeners = f.read().splitlines()
-  #  print('Edge detected on channel %s'%channel)
-    for host in listeners:
-  	print "ringing " + host
-  	subprocess.Popen([sys.executable, alertcmd, host])
+ GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
+#  if (debouncedInput(bellButtonPin)):
+ time.sleep(0.1)         # need to filter out the false positive of some power fluctuation
+ if GPIO.input(bellButtonPin) != GPIO.HIGH:
+   print("spurious signal")
+ else:
+   #    from time import sleep	
+   ## read the list of hosts listening from a configuration file
+   with open('/opt/doorbell/listeners.txt') as f:
+     listeners = f.read().splitlines()
+   for host in listeners:
+     print "ringing " + host
+     subprocess.Popen([sys.executable, alertcmd, host])
 
-  # subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
-    subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
-    print(debouncedInput(bellButtonPin));
+   #subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
+   subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
 
-#GPIO.add_event_detect(bellButtonPin, GPIO.FALLING, callback=alert_action, bouncetime=1500) 
 
 	
 GPIO.cleanup()
