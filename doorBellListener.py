@@ -59,7 +59,7 @@ print ("READY")
 while (True):
  GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
 #  if (debouncedInput(bellButtonPin)):
- time.sleep(0.1)         # need to filter out the false positive of some power fluctuation
+ time.sleep(0.5)         # need to filter out the false positive of some power fluctuation
  if GPIO.input(bellButtonPin) != GPIO.HIGH:
    print("spurious signal")
  else:
