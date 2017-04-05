@@ -35,10 +35,8 @@ def debouncedInput(pin):
         i = i + 1
         if (ones >= 3):
             return 1
-            print(ones >=3)
         if (zeroes >=3):
             return 0
-            print ("zeros >=3")
         time.sleep(0.5) # wait a bit
 
     # indeterminate state, tries exhausted
@@ -61,7 +59,7 @@ while (True):
   	subprocess.Popen([sys.executable, alertcmd, host])
 
   # subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
-#    subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
+    subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
     print(debouncedInput(bellButtonPin));
 
 #GPIO.add_event_detect(bellButtonPin, GPIO.FALLING, callback=alert_action, bouncetime=1500) 
