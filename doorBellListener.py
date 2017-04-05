@@ -19,8 +19,12 @@ GPIO.setwarnings(False)
 GPIO.setup(bellButtonPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push button 
 
 
-# adding debounce code found here:
+# adding code found here:
 # http://raspberrypi.stackexchange.com/a/50530
+# this is not so much debouncing, rather avoiding spurious signals
+# the thinking is that the "debouncedInput" code checks to make sure the 
+# pin is signaled for more than a few milliseconds....
+# I am not sure it's working. In fact I rather suspect it is not working
 def debouncedInput(pin):
     tries = 12
     i, ones, zeroes = 0, 0, 0
@@ -46,6 +50,12 @@ def debouncedInput(pin):
 print ("READY")
 
 #def alert_action(channel):
+# 04/05/2017 - removed "event_detect" code and switched to "wait_for_edge" 
+# in an attempt to remove spurious button presses.
+# the code does NOTHING else, so I figured I'd give it a try.
+# I didn't realize there was a bouncetime paramater at first 
+# and adding that definitely stopped the bouncing.
+
 while (True):
   GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
   if (debouncedInput(bellButtonPin)):
