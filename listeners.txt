@@ -1,3 +1,1 @@
-imoinu.unival.com
-jennsdoorbell.unival.com
-mailroomdoorbellpi.unival.com
+10.1.2.86

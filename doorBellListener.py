@@ -49,9 +49,9 @@ print ("READY")
 
 #def alert_action(channel):
 while (True):
-  GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING)
+  GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
   if (debouncedInput(bellButtonPin)):
-    from time import sleep	
+#    from time import sleep	
     ## read the list of hosts listening from a configuration file
     with open('/opt/doorbell/listeners.txt') as f:
   	listeners = f.read().splitlines()
@@ -61,7 +61,7 @@ while (True):
   	subprocess.Popen([sys.executable, alertcmd, host])
 
   # subprocess.Popen([sys.executable,"/opt/doorbell/unlockDoor.py"])
-    subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
+#    subprocess.Popen([sys.executable,"/opt/doorbell/sendsms.py","DingDong"])
     print(debouncedInput(bellButtonPin));
 
 #GPIO.add_event_detect(bellButtonPin, GPIO.FALLING, callback=alert_action, bouncetime=1500) 
