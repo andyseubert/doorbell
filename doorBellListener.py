@@ -25,27 +25,27 @@ GPIO.setup(bellButtonPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)  # Front push but
 # the thinking is that the "debouncedInput" code checks to make sure the 
 # pin is signaled for more than a few milliseconds....
 # I am not sure it's working. In fact I rather suspect it is not working
-def debouncedInput(pin):
-    tries = 12
-    i, ones, zeroes = 0, 0, 0
-    while i < tries:
-        bit=GPIO.input(pin)
-        if (bit == 1):
-           ones = ones + 1
-           zeroes = 0
-        else:
-           zeroes = zeroes + 1
-           ones = 0
-        i = i + 1
-        if (ones >= 3):
-            return 1
-        if (zeroes >=3):
-            return 0
-        time.sleep(0.5) # wait a bit
-
-    # indeterminate state, tries exhausted
-    logging.error ('Bouncy input: %s', pin) 
-    return (bit)   #best effort 
+#def debouncedInput(pin):
+#    tries = 12
+#    i, ones, zeroes = 0, 0, 0
+#    while i < tries:
+#        bit=GPIO.input(pin)
+#        if (bit == 1):
+#           ones = ones + 1
+#           zeroes = 0
+#        else:
+#           zeroes = zeroes + 1
+#           ones = 0
+#        i = i + 1
+#        if (ones >= 3):
+#            return 1
+#        if (zeroes >=3):
+#            return 0
+#        time.sleep(0.5) # wait a bit
+#
+#    # indeterminate state, tries exhausted
+#    logging.error ('Bouncy input: %s', pin) 
+#    return (bit)   #best effort 
 
 print ("READY")
 
@@ -59,7 +59,7 @@ print ("READY")
 while (True):
  GPIO.wait_for_edge(bellButtonPin,GPIO.FALLING,bouncetime=500)
 #  if (debouncedInput(bellButtonPin)):
- time.sleep(0.5)         # need to filter out the false positive of some power fluctuation
+ time.sleep(0.1)         # need to filter out the false positive of some power fluctuation
  if GPIO.input(bellButtonPin) != GPIO.HIGH:
    print("spurious signal")
  else:
